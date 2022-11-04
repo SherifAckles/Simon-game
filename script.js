@@ -20,7 +20,8 @@ $(".btn").click(function () {
 
   playSound(userChosenColour);
   animatePress(userChosenColour);
-  checkAnswer(userClickedPattern.length - 1);
+  //using ES 2022 .at() method
+  checkAnswer(userClickedPattern.at(-1));
 });
 
 function checkAnswer(currentLevel) {
@@ -51,7 +52,7 @@ function nextSequence() {
   const randomNumber = Math.floor(Math.random() * buttonColours.length);
   //using es 2022 .at() method
   const randomChosenColour = buttonColours.at(randomNumber);
-  console.log(randomChosenColour);
+
   gamePattern.push(randomChosenColour);
 
   $("#" + randomChosenColour)
