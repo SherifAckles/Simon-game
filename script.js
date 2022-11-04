@@ -24,7 +24,8 @@ $(".btn").click(function () {
 });
 
 function checkAnswer(currentLevel) {
-  if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+  //using ES 2022 .at() method
+  if (gamePattern.at(currentLevel) === userClickedPattern.at(currentLevel)) {
     if (userClickedPattern.length === gamePattern.length) {
       setTimeout(function () {
         nextSequence();
@@ -48,7 +49,9 @@ function nextSequence() {
   level++;
   $("#level-title").text("Level " + level);
   const randomNumber = Math.floor(Math.random() * buttonColours.length);
-  const randomChosenColour = buttonColours[randomNumber];
+  //using es 2022 .at() method
+  const randomChosenColour = buttonColours.at(randomNumber);
+  console.log(randomChosenColour);
   gamePattern.push(randomChosenColour);
 
   $("#" + randomChosenColour)
