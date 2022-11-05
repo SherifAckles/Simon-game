@@ -1,8 +1,10 @@
+const cheat = document.querySelector(".cheat-code");
 const buttonColours = ["red", "blue", "green", "yellow"];
 
 let gamePattern = [];
-let userClickedPattern = [];
 
+let userClickedPattern = [];
+$(".here").addClass("hidden");
 let started = false;
 let level = 0;
 
@@ -21,7 +23,7 @@ $(".btn").click(function () {
   playSound(userChosenColour);
   animatePress(userChosenColour);
   //using ES 2022 .at() method
-  checkAnswer(userClickedPattern.at(-1));
+  checkAnswer(userClickedPattern.length - 1);
 });
 
 function checkAnswer(currentLevel) {
@@ -49,9 +51,9 @@ function nextSequence() {
   userClickedPattern = [];
   level++;
   $("#level-title").text("Level " + level);
-  const randomNumber = Math.floor(Math.random() * buttonColours.length);
+  let randomNumber = Math.floor(Math.random() * buttonColours.length);
   //using es 2022 .at() method
-  const randomChosenColour = buttonColours.at(randomNumber);
+  let randomChosenColour = buttonColours[randomNumber];
 
   gamePattern.push(randomChosenColour);
 
@@ -69,6 +71,10 @@ function animatePress(currentColor) {
   }, 100);
 }
 
+$(".Cheat-btn").click(function () {
+  $(".here").toggle("hidden");
+  cheat.textContent = gamePattern;
+});
 function playSound(name) {
   const audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
